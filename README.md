@@ -1,1 +1,1 @@
-# ts-eslint-prettier-husky
+# Playwright Recipes;
