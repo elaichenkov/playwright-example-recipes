@@ -1,0 +1,60 @@
+{
+  "name": "ts-eslint-prettier-husky",
+  "version": "1.0.0",
+  "description": "ESLint, Prettier, and Husky configuration for the TypeScript projects that I use.",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\"",
+    "prettier:watch": "npx onchange '(src|tests)/**/*.ts' -- prettier --write {{changed}}",
+    "prettier:format": "npx prettier '(src|tests)/**/*.ts' --write",
+    "eslint:format": "npx eslint --fix '{src,tests}/**/*.ts'",
+    "format": "npm run prettier:format && npm run eslint:format",
+    "release": "npx release-it --github.release",
+    "release:ci": "npm run release -- --ci --npm.skipChecks --no-git.requireCleanWorkingDir",
+    "release:patch": "npm run release -- patch",
+    "release:minor": "npm run release -- minor",
+    "release:major": "npm run release -- major"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm build",
+      "npm run format",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elaichenkov/ts-eslint-prettier-husky.git"
+  },
+  "keywords": [
+    "eslit",
+    "typescript",
+    "prettier",
+    "husky",
+    "config",
+    "configuration",
+    "automation",
+    "template"
+  ],
+  "author": "Yevhen Laichenkov <elaichenkov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elaichenkov/ts-eslint-prettier-husky/issues"
+  },
+  "homepage": "https://github.com/elaichenkov/ts-eslint-prettier-husky#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "onchange": "^7.1.0",
+    "prettier": "^2.3.1",
+    "release-it": "^14.10.0",
+    "typescript": "^4.3.4"
+  }
+}
