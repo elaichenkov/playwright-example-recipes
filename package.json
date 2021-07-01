@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "prepare": "husky install",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\"",
-    "prettier:watch": "npx onchange '(src|tests)/**/*.ts' -- prettier --write {{changed}}",
-    "prettier:format": "npx prettier '(src|tests)/**/*.ts' --write",
-    "eslint:format": "npx eslint --fix '{src,tests}/**/*.ts'",
+    "test": "npx playwright test",
+    "test:authentication": "npx playwright test --config=examples/authentication/playwright.config.ts",
+    "prettier:watch": "npx onchange 'examples/**/*.ts' -- prettier --write {{changed}}",
+    "prettier:format": "npx prettier 'examples/**/*.ts' --write",
+    "eslint:format": "npx eslint --fix 'examples/**/*.ts'",
     "format": "npm run prettier:format && npm run eslint:format",
     "release": "npx release-it --github.release",
     "release:ci": "npm run release -- --ci --npm.skipChecks --no-git.requireCleanWorkingDir",
@@ -19,7 +19,6 @@
   },
   "lint-staged": {
     "*.ts": [
-      "npm build",
       "npm run format",
       "git add"
     ]
@@ -55,6 +54,7 @@
     "lint-staged": "^11.0.0",
     "onchange": "^7.1.0",
     "playwright": "^1.12.2",
+    "playwright-expect": "^0.1.2",
     "prettier": "^2.3.1",
     "release-it": "^14.10.0",
     "typescript": "^4.3.4"
